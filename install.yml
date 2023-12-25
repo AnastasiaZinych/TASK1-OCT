@@ -1,13 +1,9 @@
 - hosts: all
   tasks:
-  - name: include OS tasks
-    include: "{{ ansible_os_family }}.yml"
+  - debug:
+      msg: "OS is {{ ansible_os_family }}"
 
-  - name: Recursively change ownership of a directory on RedHad and Debian
-    file:
-      path: /root/TASK1-OCT/
-      state: directory
-      recurse: yes
-      owner: root
-      group: root
+  - include_tasks: "{{ ansible_os_family }}.yml"
+
+
 
